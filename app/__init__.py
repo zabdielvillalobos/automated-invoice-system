@@ -1,8 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from .auth import auth as auth_blueprint  # Import the authentication blueprint
-from .routes import main as main_blueprint  # Import the main application routes
 
 # Initialize the database
 db = SQLAlchemy()
@@ -26,8 +24,11 @@ def create_app():
         return User.query.get(int(user_id))
 
     # Register the blueprints for authentication and the main routes
+    # Importing blueprints after app and db initialization to avoid circular import
+    from .auth import auth as auth_blueprint
+    from .routes import main as main_blueprint
+
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)
 
     return app
-
