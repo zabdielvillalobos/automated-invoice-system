@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Invoice Dashboard</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Client</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for invoice in invoices %}
+        <tr>
+            <td>{{ invoice.client_name }}</td>
+            <td>{{ invoice.service_description }}</td>
+            <td>${{ invoice.amount }}</td>
+            <td>{{ invoice.due_date.strftime('%Y-%m-%d') }}</td>
+            <td>{{ 'Paid' if invoice.is_paid else 'Pending' }}</td>
+            <td>
+                <a href="/mark_paid/{{ invoice.id }}">Mark as Paid</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

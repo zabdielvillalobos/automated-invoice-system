@@ -1,0 +1,4 @@
+<p>Dear {{ invoice.client_name }},</p>
+<p>Attached is your invoice for the service: {{ invoice.service_description }}.</p>
+<p>The amount due is ${{ invoice.amount }} and the due date is {{ invoice.due_date.strftime('%Y-%m-%d') }}.</p>
+<p>Thank you for your business!</p>

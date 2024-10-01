@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Create New Invoice</h2>
+
+<form action="/new_invoice" method="POST">
+    <label for="client_name">Client Name:</label>
+    <input type="text" id="client_name" name="client_name" required>
+
+    <label for="client_email">Client Email:</label>
+    <input type="email" id="client_email" name="client_email" required>
+
+    <label for="service_description">Service Description:</label>
+    <input type="text" id="service_description" name="service_description" required>
+
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" required>
+
+    <label for="due_date">Due Date:</label>
+    <input type="date" id="due_date" name="due_date" required>
+
+    <button type="submit">Create Invoice</button>
+</form>
+{% endblock %}
